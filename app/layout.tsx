@@ -9,7 +9,7 @@ const bengali = Noto_Sans_Bengali({ subsets: ["bengali"], weight: "400" })
 
 export const metadata: Metadata = {
   title: 'Star Golpo',
-  description: 'Documentry of legent',
+  description: 'News & Magazin',
 }
 
 export default function RootLayout({
