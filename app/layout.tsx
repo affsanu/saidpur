@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <meta name="juicyads-site-verification" content="774dd89bcccbdda4620ddd9e4321b7fd" />
+      <meta name="monetag" content="6f8768c1633bebd908689a8e4266e0ea" />
       </head>
       <body className={bengali.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
