@@ -23,37 +23,37 @@ const MainNav = (props: Props) => {
                             মূল পাতা
                         </Link>
                         <Link
-                            href="/world"
+                            href="/pages/world"
                             className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/world" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
                             বিশ্ব
                         </Link>
                         <Link
-                            href="/sports"
+                            href="/pages/sports"
                             className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/sports" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
                             খেলা
                         </Link>
                         <Link
-                            href="/tech"
+                            href="/pages/tech"
                             className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/tech" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
                             প্রযুক্তি
                         </Link>
                         <Link
-                            href="/economy"
+                            href="/pages/economy"
                             className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/economy" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
                             অর্থনীতি
                         </Link>
                         <Link
-                            href="/entertainment"
+                            href="/pages/entertainment"
                             className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/entertainment" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
                             বিনোদন
                         </Link>
                         <Link
-                            href="/education"
+                            href="/pages/education"
                             className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/education" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
                             শিক্ষা
                         </Link>
                         <Link
-                            href="/opinion"
+                            href="/pages/opinion"
                             className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/opinion" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
                             মতামত
                         </Link>
