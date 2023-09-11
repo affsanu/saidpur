@@ -17,7 +17,7 @@ const MegaSection = (props: Props) => {
                             alt='pho-1'
                             layout="fill"
                             objectFit="cover"
-                            className='opacity-60 rounded-md hover:scale-105 duration-1000'
+                            className='opacity-80 rounded-md hover:scale-105 duration-1000'
                         />
                         <div className='absolute bottom-4 left-0 right-0 px-4 flex flex-col text-white gap-2'>
                             <span className='text-xs bg-rose-600 w-16 flex justify-center items-center py-1 px-4 rounded-sm'>জীবনযাপন</span>
@@ -34,7 +34,7 @@ const MegaSection = (props: Props) => {
                                 alt='pho-2'
                                 layout="fill"
                                 objectFit="cover"
-                                className='opacity-60 rounded-md hover:scale-110 duration-500'
+                                className='opacity-80 rounded-md hover:scale-110 duration-500'
                             />
                             <div className='absolute bottom-3 left-4 flex flex-col text-white gap-2'>
                                 <span className='text-xs bg-rose-600 w-16 flex justify-center items-center py-1 px-4 rounded-sm'>জীবনযাপন</span>
@@ -52,7 +52,7 @@ const MegaSection = (props: Props) => {
                                     alt='pho-2'
                                     layout="fill"
                                     objectFit="cover"
-                                    className='opacity-60 rounded-md hover:scale-105 duration-500'
+                                    className='opacity-80 rounded-md hover:scale-105 duration-500'
                                 />
                                 <div className='absolute bottom-4 left-4 flex flex-col text-white gap-2'>
                                     <span className='text-xs bg-rose-600 w-16 flex justify-center items-center py-1 px-4 rounded-sm'>জীবনযাপন</span>
@@ -69,7 +69,7 @@ const MegaSection = (props: Props) => {
                                     alt='pho-2'
                                     layout="fill"
                                     objectFit="cover"
-                                    className='opacity-60 rounded-md hover:scale-105 duration-500'
+                                    className='opacity-80 rounded-md hover:scale-105 duration-500'
                                 />
                                 <div className='absolute bottom-4 left-4 flex flex-col text-white gap-2'>
                                     <span className='text-xs bg-rose-600 w-16 flex justify-center items-center py-1 px-4 rounded-sm'>জীবনযাপন</span>

@@ -1,4 +1,5 @@
 "use client";
+import CardSection from "@/components/sections/CardSection";
 import Category from "@/components/sections/Category";
 import MainSection from "@/components/sections/MainSection";
 import MegaSection from "@/components/sections/MegaSection";
@@ -20,6 +21,7 @@ const Home = () => {
         <SlidingSection />
         <MegaSection />
       </div>
+      <CardSection />
     </div>
   )
 }
