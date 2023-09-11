@@ -20,9 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script async custom-element="amp-auto-ads"
-          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-        </script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1243977103901454"
+          crossOrigin="anonymous"></script>
       </head>
       <body className={bengali.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
