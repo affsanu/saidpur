@@ -11,11 +11,11 @@ const PhotoSection = () => {
     
     return (
         <div className='bg-black w-full py-6'>
-            <div className='max-w-6xl h-[420px] mx-auto px-3 md:px-4 lg:px-4 xl:px-0'>
+            <div className='max-w-6xl md:h-[420px] mx-auto px-3 md:px-4 lg:px-4 xl:px-0'>
                 <div className='grid grid-cols-1 h-full w-full  md:grid-cols-3 gap-4'>
 
                     <div
-                        className='relative w-full h-full group cursor-pointer'
+                        className='relative w-full h-full group cursor-pointer min-h-[320px]'
                         onMouseEnter={() => setShowTitle(true)}
                         onMouseLeave={() => setShowTitle(false)}
                     >
@@ -42,7 +42,7 @@ const PhotoSection = () => {
                     </div>
 
                     <div
-                        className='relative w-full h-full group cursor-pointer'
+                        className='relative w-full h-full group cursor-pointer min-h-[320px]'
                         onMouseEnter={() => setShowTitle2(true)}
                         onMouseLeave={() => setShowTitle2(false)}
                     >
@@ -69,7 +69,7 @@ const PhotoSection = () => {
                     </div>
 
                     <div
-                        className='relative w-full h-full group cursor-pointer'
+                        className='relative w-full h-full group cursor-pointer min-h-[320px]'
                         onMouseEnter={() => setShowTitle3(true)}
                         onMouseLeave={() => setShowTitle3(false)}
                     >

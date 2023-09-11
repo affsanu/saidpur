@@ -6,9 +6,9 @@ type Props = {}
 
 const MiniSection = (props: Props) => {
   return (
-    <div className='max-w-6xl md:h-[120px] mx-auto border rounded-md p-4 '>
+    <div className='max-w-6xl md:h-[160px] mx-auto border rounded-md p-4 '>
       <div className='grid grid-cols-1 md:grid-cols-3 w-full h-full gap-6'>
-        <div className='grid grid-cols-5 gap-2 group cursor-pointer'>
+        <div className='grid grid-cols-5 gap-2 group cursor-pointer min-h-[120px]'>
           <div className='col-span-3 flex flex-col justify-between'>
             <span className='text-xs text-rose-600'>বাংলাদেশ</span>
             <span className='text-sm font-semibold group-hover:text-sky-500 duration-300'>শেখ হাসিনা-এমানুয়েল মাখোঁর দ্বিপক্ষীয় বৈঠক</span>
@@ -29,7 +29,7 @@ const MiniSection = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-5 gap-2 group cursor-pointer'>
+        <div className='grid grid-cols-5 gap-2 group cursor-pointer min-h-[120px]'>
           <div className='col-span-3 flex flex-col justify-between'>
             <span className='text-xs text-rose-600'>বাংলাদেশ</span>
             <span className='text-sm font-semibold group-hover:text-sky-500 duration-300'>শেখ হাসিনা-এমানুয়েল মাখোঁর দ্বিপক্ষীয় বৈঠক</span>
@@ -50,7 +50,7 @@ const MiniSection = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-5 gap-2 group cursor-pointer'>
+        <div className='grid grid-cols-5 gap-2 group cursor-pointer min-h-[120px]'>
           <div className='col-span-3 flex flex-col justify-between'>
             <span className='text-xs text-rose-600'>বাংলাদেশ</span>
             <span className='text-sm font-semibold group-hover:text-sky-500 duration-300'>শেখ হাসিনা-এমানুয়েল মাখোঁর দ্বিপক্ষীয় বৈঠক</span>
