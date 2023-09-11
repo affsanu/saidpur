@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname } from "next/navigation";
 import { buttonVariants } from './ui/button';
 import { Search } from 'lucide-react';
@@ -11,9 +11,27 @@ type Props = {}
 
 const MainNav = (props: Props) => {
     const pathname = usePathname();
+    const [isFixed, setIsFixed] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 0) {
+                setIsFixed(true);
+            } else {
+                setIsFixed(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
-        <div className='w-full h-16 border-b hidden sm:block shadow-sm'>
+        <div className={`${isFixed ? 'fixed top-0 bg-white dark:bg-black z-50 inset-0' : ''} w-full h-16 border-b hidden sm:block shadow-sm`}>
             <div className='grid max-w-6xl mx-auto h-full px-4 items-center'>
                 <div className='flex items-center justify-between'>
                     <div className='flex uppercase gap-2 text-sm dark:text-slate-300'>

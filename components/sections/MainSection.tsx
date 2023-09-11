@@ -60,7 +60,7 @@ const MainSection = () => {
                                     </div>
                                 </div>
                                 <span className="uppercase text-xs md:text-sm hover:text-rose-500 cursor-pointer duration-300">
-                                    Sanu Islam
+                                সানু ইসলাম
                                 </span>
                             </div>
                         </CardFooter>

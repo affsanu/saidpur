@@ -13,7 +13,7 @@ const TopNav = (props: Props) => {
     const date = TopNavDate();
 
     return (
-        <div className='w-full h-8 border-b hidden sm:block'>
+        <div className={`w-full h-8 border-b hidden sm:block`}>
             <div className='flex justify-between max-w-6xl h-full items-center mx-auto px-4'>
                 <div className='text-xs flex gap-4 items-center'>
                     <span className='flex items-center gap-1 dark:text-muted-foreground'>
