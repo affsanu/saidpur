@@ -1,6 +1,7 @@
 "use client";
 import Category from "@/components/sections/Category";
 import MainSection from "@/components/sections/MainSection";
+import MegaSection from "@/components/sections/MegaSection";
 import PhotoSection from "@/components/sections/PhotoSection";
 import SecondSection from "@/components/sections/SecondSection";
 import SlidingSection from "@/components/sections/SlidingSection";
@@ -17,6 +18,7 @@ const Home = () => {
       <div className="px-3 md:px-6 lg:px-4 space-y-6">
         <Category />
         <SlidingSection />
+        <MegaSection />
       </div>
     </div>
   )
