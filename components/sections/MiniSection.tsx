@@ -24,14 +24,14 @@ const items = [
 
 const MiniSection = (props: Props) => {
   return (
-    <div className='max-w-6xl md:h-[160px] mx-auto border rounded-md p-4 bg-white/50 '>
+    <div className='max-w-6xl md:h-[160px] mx-auto border rounded-md p-4  bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-rose-600'>
       <div className='grid grid-cols-1 md:grid-cols-3 w-full h-full gap-6'>
         {items.map((item, index) => (
           <div key={index} className='grid grid-cols-5 gap-2 group cursor-pointer min-h-[120px]'>
             <div className='col-span-3 flex flex-col justify-between'>
-              <span className='text-xs text-rose-600'>{item.category}</span>
-              <span className='text-sm font-semibold group-hover:text-sky-500 duration-300 text-white'>{item.title}</span>
-              <span className='flex gap-1 items-center  text-muted-foreground'>
+              <span className='text-xs font-bold'>{item.category}</span>
+              <span className='text-sm font-semibold group-hover:text-white duration-300 text-slate-200'>{item.title}</span>
+              <span className='flex gap-1 items-center  text-slate-300'>
                 <Clock className='w-3 h-3' />
                 <span className='text-xs'>৫ মিনিটে পড়ুন</span>
               </span>
