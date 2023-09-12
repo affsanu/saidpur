@@ -1,5 +1,5 @@
 "use client";
-import TopNavDate from '@/actions/custom-date';
+import {TopNavDate} from '@/actions/custom-date';
 import Typewriter from 'typewriter-effect';
 import { TopNavSheet } from './TopNavSheet';
 import { Instagram, Twitter, Facebook, ArrowLeftSquare, ArrowRightSquare, Clock } from "lucide-react";

@@ -1,39 +1,36 @@
+"use client";
+import { DateConvert } from '@/actions/custom-date';
+import { NewsDataApi } from '@/types/types';
+import axios from 'axios';
 import { Clock } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import { useEffect, useState } from 'react';
 
-type Props = {}
+interface MiniSectionProps {
 
-const items = [
-  {
-    title: 'ঢাকা-প্যারিসের মধ্যে দুটি সমঝোতা স্মারক সই',
-    category: "বাংলাদেশ",
-    content: "আজ সোমবার প্রধানমন্ত্রীর কার্যালয়ের করবী হলে প্রধানমন্ত্রী শেখ হাসিনা ও ফ্রান্সের প্রেসিডেন্ট এমানুয়েল মাখোঁর উপস্থিতিতে এই সমঝোতা স্মারক সই হয়।"
-  },
-  {
-    title: 'বাংলাদেশ-ফ্রান্স দ্বিপক্ষীয় সম্পর্ক নতুন মাত্রায় পৌঁছেছে: প্রধানমন্ত্রী',
-    category: "জীবনযাপন",
-    content: "প্রধানমন্ত্রী শেখ হাসিনা আরও বলেন, আজ ফ্রান্স ও বাংলাদেশের মধ্যে দ্বিপক্ষীয় সম্পর্কের একটি ঐতিহাসিক দিন, যা পাঁচ দশকের বেশি সময় ধরে বিকশিত হচ্ছে।।"
-  },
-  {
-    title: 'কয়রায় ‘সাদা সোনায়’ ১৫ হাজার মানুষের ভাগ্যবদল',
-    category: "বিনোদন",
-    content: "ভারত, পাকিস্তান, শ্রীলঙ্কা ও বাংলাদেশ—সুপার ফোর থেকে কোন দুই দল উঠবে ফাইনালে। ভারত-পাকিস্তান ম্যাচ বৃষ্টিতে ভেসে গেলে বাংলাদেশের ফাইনালে ওঠার কোনো সুযোগ কি থাকবে?"
-  },
-];
+}
 
-const MiniSection = (props: Props) => {
+
+const MiniSection = ({ }: MiniSectionProps) => {
+  const [results, setResults] = useState<NewsDataApi[]>([]);
+
+  useEffect(() => {
+    axios.get("https://newsdata.io/api/1/news?apikey=pub_278539e50fdc78fea3b64b6048b70c0cf395a&q=pegasus&language=en")
+      .then((response) => setResults(response.data.results))
+      .catch((error) => error.response.data);
+  }, []);
+
   return (
     <div className='max-w-6xl md:h-[160px] mx-auto border rounded-md p-4  bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-rose-600'>
       <div className='grid grid-cols-1 md:grid-cols-3 w-full h-full gap-6'>
-        {items.map((item, index) => (
+        {results.slice(1, 4).map((item, index) => (
           <div key={index} className='grid grid-cols-5 gap-2 group cursor-pointer min-h-[120px]'>
             <div className='col-span-3 flex flex-col justify-between'>
-              <span className='text-xs font-bold'>{item.category}</span>
+              <span className='text-xs font-bold'>{item.keywords}</span>
               <span className='text-sm font-semibold group-hover:text-white duration-300 text-slate-200'>{item.title}</span>
               <span className='flex gap-1 items-center  text-slate-300'>
                 <Clock className='w-3 h-3' />
-                <span className='text-xs'>৫ মিনিটে পড়ুন</span>
+                <span className='text-xs'>{DateConvert(item.pubDate)}</span>
               </span>
             </div>
             <div className='col-span-2'>
