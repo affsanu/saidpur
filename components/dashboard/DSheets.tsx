@@ -37,8 +37,8 @@ export function DSheets() {
                 {/* Second Section */}
                 <div className="py-6 flex flex-col gap-5">
                     {items.map((item, index) => (
-                        <SheetClose asChild>
-                            <Link key={index} href={item.link}>
+                        <SheetClose key={index} asChild>
+                            <Link href={item.link}>
                                 <span className={`${pathname === item.link ? active : "text-slate-300"} flex items-center gap-2 text-sm px-7`}>
                                     <GaugeCircle className={` w-5 h-5`} />
                                     {item.title}
