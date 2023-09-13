@@ -1,7 +1,6 @@
 
 import NextAuth from "next-auth";
 import type { AuthOptions } from "next-auth"
-
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import bcrypt from "bcryptjs";
@@ -14,8 +13,8 @@ export const authOptions: AuthOptions = {
         CredentialsProvider({
             name: "credentials",
             credentials: {
-                email: { label: 'email', type: 'text' },
-                password: { label: 'password', type: 'password' },
+                email: { label: 'Email', type: 'text' },
+                password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) {
