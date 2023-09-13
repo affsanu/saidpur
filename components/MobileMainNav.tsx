@@ -1,14 +1,17 @@
 "use client";
-import { Search } from 'lucide-react'
+import { LayoutDashboard, Search } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import MainLogo from './MainLogo'
 import { ModeToggle } from './ModeToggle'
 import { LoginDialog } from './login-dialog'
 import { MobileNavSheet } from './MobileNavSheet'
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 type Props = {}
 
 const MobileMainNav = (props: Props) => {
+    const session = useSession();
     const [isFixed, setIsFixed] = useState(false);
 
     useEffect(() => {
@@ -36,7 +39,12 @@ const MobileMainNav = (props: Props) => {
             </div>
             <MainLogo height={10} width={10} />
             <div className='flex gap-2 items-center'>
-                <LoginDialog />
+                {session?.status === "authenticated" ?
+                    <Link href="/dashboard">
+                        <LayoutDashboard className='text-rose-600' />
+                    </Link>
+                    :
+                    <LoginDialog />}
                 <ModeToggle />
             </div>
         </div>

@@ -1,17 +1,22 @@
 "use client";
-import {TopNavDate} from '@/actions/custom-date';
+import { TopNavDate } from '@/actions/custom-date';
 import Typewriter from 'typewriter-effect';
 import { TopNavSheet } from './TopNavSheet';
-import { Instagram, Twitter, Facebook, ArrowLeftSquare, ArrowRightSquare, Clock } from "lucide-react";
+import { Instagram, Twitter, Facebook, ArrowLeftSquare, ArrowRightSquare, Clock, LogOut } from "lucide-react";
 import { Separator } from '@/components/ui/separator';
 import { LoginDialog } from './login-dialog';
+import { useSession, signOut } from 'next-auth/react';
 
 
 type Props = {}
 
 const TopNav = (props: Props) => {
+    const session = useSession();
     const date = TopNavDate();
 
+    const handleSignOutClick = async () => {
+        await signOut();
+    };
     return (
         <div className={`w-full h-8 border-b hidden sm:block`}>
             <div className='flex justify-between max-w-6xl h-full items-center mx-auto px-4'>
@@ -43,7 +48,7 @@ const TopNav = (props: Props) => {
                         <span><Facebook className='w-5 h-5 dark:text-slate-300 hover:text-sky-500 cursor-pointer' /></span>
                         <span><Twitter className='w-5 h-5 dark:text-slate-300 hover:text-blue-600 cursor-pointer' /></span>
                         <span><Instagram className='w-5 h-5 dark:text-slate-300 hover:text-fuchsia-600 cursor-pointer' /></span>
-                        <LoginDialog />
+                        {session?.data?.user ? <LogOut onClick={handleSignOutClick} className='w-5 h-5 text-rose-500 hover:text-rose-600 cursor-pointer' /> : <LoginDialog />}
                         <TopNavSheet />
                     </div>
                 </div>

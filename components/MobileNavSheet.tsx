@@ -9,7 +9,6 @@ import {
 import { BadgeCheck, ChevronRight, Facebook, Folder, Instagram, Menu, StickyNote, Twitter, Youtube } from 'lucide-react';
 import MainLogo from "./MainLogo";
 import { Separator } from "./ui/separator";
-import Image from "next/image";
 import { Card } from "./ui/card";
 
 const items = [
@@ -73,6 +72,9 @@ export function MobileNavSheet() {
                                 </span>
                                 <span className="border p-1 rounded-full shadow-lg ring-2 ring-rose-600">
                                     <Youtube />
+                                </span>
+                                <span className="border p-1 rounded-full shadow-lg ring-2 ring-pink-600">
+                                    <Instagram />
                                 </span>
                             </Card>
                         </div>

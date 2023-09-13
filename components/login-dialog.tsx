@@ -1,3 +1,7 @@
+"use client";
+
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -9,10 +13,89 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { UserCircle, LogIn } from "lucide-react";
+import axios from "axios";
+import { UserCircle, Loader2 } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useToast } from "./ui/use-toast";
+import { useForm } from "react-hook-form";
+import { ToastAction } from "./ui/toast";
+
+const formSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(6, "Minimum 6 digit required").max(32),
+});
+
+type Variant = "LOGIN" | "REGISTER";
 
 export function LoginDialog() {
+    const router = useRouter();
+    const session = useSession();
+
+    const [variant, setVariant] = useState<Variant>("LOGIN");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { toast } = useToast();
+
+    const toggleVariant = useCallback(() => {
+        if (variant === 'LOGIN') {
+            setVariant("REGISTER");
+        } else {
+            setVariant("LOGIN");
+        }
+    }, [variant]);
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    });
+
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        setIsLoading(true);
+        if (variant === "REGISTER") {
+            axios.post('/api/login', values)
+                .then(() => signIn("credentials", values))
+                .catch(() => toast({
+                    variant: "destructive",
+                    title: "Invalid credentials!",
+                    description: "please provide valid info.",
+                    action: <ToastAction altText="Try again">Try again</ToastAction>,
+                }))
+                .finally(() => setIsLoading(false));
+        }
+
+        if (variant === "LOGIN") {
+            signIn("credentials", {
+                ...values,
+                redirect: false
+            })
+                .then((callback) => {
+                    if (callback?.error) {
+                        toast({
+                            variant: "destructive",
+                            title: callback.error,
+                            description: `please provide valid info.`,
+                            action: <ToastAction altText="Try again">Try Again</ToastAction>,
+                        });
+                    }
+
+                    if (callback?.ok && !callback?.error) {
+                        toast({
+                            variant: "default",
+                            title: "Logged in!",
+                            description: "you can access all features.",
+                            action: <ToastAction altText="Welcome back!">Welcome back!</ToastAction>,
+                        });
+                        
+                    }
+                }).finally(() => setIsLoading(false));
+        }
+    }
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -20,29 +103,56 @@ export function LoginDialog() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Star Golpo Login</DialogTitle>
+                    <DialogTitle>{variant === "LOGIN" ? "Login Area" : "Registration Area"}</DialogTitle>
                     <DialogDescription>
-                        Login your account using currect username & password.
+                        {
+                            variant === "LOGIN" ?
+                                "Use valid admin credentials for login."
+                                :
+                                "Only Admin can registration here."
+                        }
                     </DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="username" className="text-right">
-                            Username
-                        </Label>
-                        <Input type="text" placeholder="username" className="col-span-3" />
-                    </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="password" className="text-right">
-                            Password
-                        </Label>
-                        <Input type="password" placeholder="password" className="col-span-3" />
-                    </div>
-                </div>
-                <DialogFooter>
-                    <Button variant="outline" type="submit" className="uppercase text-xs text-sky-400 hover:text-sky-500">
-                        <LogIn className="w-4 h-4 mr-2" />
-                        Login Now
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormControl>
+                                        <Input placeholder="example@domain.com" {...field} disabled={isLoading} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormControl>
+                                        <Input type="password" placeholder="Enter Password" {...field} disabled={isLoading} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <Button size="sm" type="submit" disabled={isLoading} className="w-full">
+                            {isLoading && (
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            )}
+                            {variant === "LOGIN" ? 'Sign in' : 'Register'}
+                        </Button>
+                    </form>
+                </Form>
+                <DialogFooter className="flex justify-between items-center">
+                    <p className="text-sm text-muted-foreground">
+                        {variant === "REGISTER" ? "Already have an account?" : "Don't have account?"}
+                    </p>
+                    <Button disabled={isLoading} onClick={toggleVariant} variant="link" size="sm" className="text-blue-500">
+                        {variant === "REGISTER" ? "sign in" : "create account"}
                     </Button>
                 </DialogFooter>
             </DialogContent>

@@ -1,8 +1,10 @@
-import { ThemeProvider } from '@/components/theme-provider'
+
 import './globals.css'
 import type { Metadata } from 'next'
 import { Noto_Sans_Bengali } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react';
+import AuthContext from '@/context/AuthContext';
+import { Toaster } from '@/components/ui/toaster';
 
 
 const bengali = Noto_Sans_Bengali({ subsets: ["bengali"], weight: "400" })
@@ -24,10 +26,11 @@ export default function RootLayout({
           crossOrigin="anonymous"></script>
       </head>
       <body className={bengali.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <AuthContext>
           {children}
-          <Analytics />
-        </ThemeProvider>
+          <Toaster />
+        </AuthContext>
+        <Analytics />
       </body>
     </html>
   )

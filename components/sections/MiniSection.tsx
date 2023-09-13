@@ -26,7 +26,7 @@ const MiniSection = ({ }: MiniSectionProps) => {
         {results.slice(1, 4).map((item, index) => (
           <div key={index} className='grid grid-cols-5 gap-2 group cursor-pointer min-h-[120px]'>
             <div className='col-span-3 flex flex-col justify-between'>
-              <span className='text-xs font-bold'>{item.keywords}</span>
+              <span className='text-xs font-bold uppercase'>{item.category}</span>
               <span className='text-sm font-semibold group-hover:text-white duration-300 text-slate-200'>{item.title}</span>
               <span className='flex gap-1 items-center  text-slate-300'>
                 <Clock className='w-3 h-3' />

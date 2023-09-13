@@ -3,14 +3,16 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { usePathname } from "next/navigation";
 import { buttonVariants } from './ui/button';
-import { Search } from 'lucide-react';
+import { LayoutDashboard, Search } from 'lucide-react';
 import { Input } from './ui/input';
 import { ModeToggle } from './ModeToggle';
+import { useSession } from 'next-auth/react';
 
 type Props = {}
 
 const MainNav = (props: Props) => {
     const pathname = usePathname();
+    const session = useSession();
     const [isFixed, setIsFixed] = useState(false);
 
     useEffect(() => {
@@ -77,6 +79,10 @@ const MainNav = (props: Props) => {
                         </Link>
                     </div>
                     <div className='flex items-center gap-4'>
+                        {session.data?.user && <Link href="dashboard">
+                            <LayoutDashboard className='text-rose-500 hover:text-rose-600 cursor-pointer' />
+                        </Link>
+                        }
                         <ModeToggle />
                         <div className='flex items-center relative'>
                             <Input placeholder='গল্প খুজুন...' />
