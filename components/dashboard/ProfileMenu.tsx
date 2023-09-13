@@ -35,7 +35,7 @@ export function ProfileMenu() {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel className="flex flex-col text-slate-200">
+                <DropdownMenuLabel className="flex flex-col dark:text-slate-200">
                     Super Admin
                     <span className="text-xs text-muted-foreground">{session?.user?.email}</span>
                 </DropdownMenuLabel>
