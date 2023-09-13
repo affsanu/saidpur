@@ -79,7 +79,7 @@ const MainNav = (props: Props) => {
                         </Link>
                     </div>
                     <div className='flex items-center gap-4'>
-                        {session.data?.user && <Link href="dashboard">
+                        {session.data?.user && <Link href="/dashboard">
                             <LayoutDashboard className='text-rose-500 hover:text-rose-600 cursor-pointer' />
                         </Link>
                         }
