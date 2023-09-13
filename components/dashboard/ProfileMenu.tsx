@@ -1,3 +1,4 @@
+"use client";
 import {
     Languages,
     Lock,
@@ -17,9 +18,10 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { signOut } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 
 export function ProfileMenu() {
+    const { data: session, status } = useSession();
 
     const handleLogout = async () => {
         await signOut();
@@ -33,7 +35,10 @@ export function ProfileMenu() {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>Admin</DropdownMenuLabel>
+                <DropdownMenuLabel className="flex flex-col text-slate-200">
+                    Super Admin
+                    <span className="text-xs text-muted-foreground">{session?.user?.email}</span>
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuItem>
@@ -46,7 +51,7 @@ export function ProfileMenu() {
                         <span>Change Password</span>
                         <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
                     </DropdownMenuItem>
-                  
+
                     <DropdownMenuItem>
                         <Languages className="mr-2 h-4 w-4" />
                         <span>Language</span>
