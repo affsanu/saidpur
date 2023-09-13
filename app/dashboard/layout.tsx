@@ -1,4 +1,10 @@
-import DNav from "@/components/dashboard/DNav"
+import DNav from "@/components/dashboard/DNav";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'Star Golpo | Dashboard',
+    description: 'News & Magazin',
+  }
 
 export default function DashboardLayout({
     children,
