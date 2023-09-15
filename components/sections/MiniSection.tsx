@@ -4,6 +4,7 @@ import { NewsDataApi } from '@/types/types';
 import axios from 'axios';
 import { Clock } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 interface MiniSectionProps {
@@ -24,7 +25,7 @@ const MiniSection = ({ }: MiniSectionProps) => {
     <div className='max-w-6xl md:h-[160px] mx-auto border rounded-md p-4  bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-rose-600'>
       <div className='grid grid-cols-1 md:grid-cols-3 w-full h-full gap-6'>
         {results.slice(1, 4).map((item, index) => (
-          <div key={index} className='grid grid-cols-5 gap-2 group cursor-pointer min-h-[120px]'>
+          <Link href={`/pages/${item.article_id}`} key={index} className='grid grid-cols-5 gap-2 group cursor-pointer min-h-[120px]'>
             <div className='col-span-3 flex flex-col justify-between'>
               <span className='text-xs font-bold uppercase'>{item.category}</span>
               <span className='text-sm font-semibold group-hover:text-white duration-300 text-slate-200'>{item.title}</span>
@@ -44,7 +45,7 @@ const MiniSection = ({ }: MiniSectionProps) => {
                 />
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

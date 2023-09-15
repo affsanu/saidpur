@@ -6,6 +6,7 @@ const nextConfig = {
             "1000logos.net",
             "images.unsplash.com",
             "demo.tagdiv.com",
+            "plus.unsplash.com"
         ]
     }
 }
