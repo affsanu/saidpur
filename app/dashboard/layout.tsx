@@ -15,9 +15,10 @@ export default async function DashboardLayout({
     const currentUser = await getCurrentUser();
     const userName = currentUser?.name;
     const isAdmin = currentUser?.isAdmin;
+    const email = currentUser?.email;
     return (
         <div className="h-screen w-full">
-            <DNav userName={userName!} isAdmin={isAdmin!} />
+            <DNav userName={userName!} isAdmin={isAdmin!} email={email!} />
             {children}
         </div>
     )

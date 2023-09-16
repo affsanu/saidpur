@@ -23,9 +23,10 @@ import { signOut, useSession } from "next-auth/react"
 interface ProfileMenuProps {
     userName: string;
     isAdmin: boolean;
+    email: string;
 }
 
-export function ProfileMenu({ userName, isAdmin }: ProfileMenuProps) {
+export function ProfileMenu({ userName, isAdmin, email }: ProfileMenuProps) {
     const { data: session, status } = useSession();
 
     const handleLogout = async () => {
@@ -40,9 +41,13 @@ export function ProfileMenu({ userName, isAdmin }: ProfileMenuProps) {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel className="flex flex-col dark:text-slate-200">
-                    {userName}
-                    <span className="text-xs text-muted-foreground">{session?.user?.email}</span>
+                <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-1">
+                        <p className="text-sm font-medium leading-none lowercase">{userName}</p>
+                        <p className="text-xs leading-none text-muted-foreground">
+                            {email}
+                        </p>
+                    </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>

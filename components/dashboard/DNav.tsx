@@ -12,9 +12,10 @@ import { PathnameSplite } from '@/actions/PathnameSplite';
 interface DNavProps {
     userName: string;
     isAdmin: boolean;
+    email: string;
 }
 
-const DNav = ({ userName, isAdmin }: DNavProps) => {
+const DNav = ({ userName, isAdmin, email }: DNavProps) => {
     const pathname = usePathname();
 
     return (
@@ -29,7 +30,7 @@ const DNav = ({ userName, isAdmin }: DNavProps) => {
                     <div className='flex items-center gap-4'>
                         <ModeToggle />
                         <div className='flex items-center gap-2 uppercase text-xs text-cyan-400'>
-                            <ProfileMenu userName={userName!} isAdmin={isAdmin!} />
+                            <ProfileMenu userName={userName!} isAdmin={isAdmin!} email={email!} />
                         </div>
                     </div>
                 </div>
