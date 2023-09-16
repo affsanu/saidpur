@@ -57,12 +57,12 @@ const PostsPage = () => {
                 </label>
               </div>
               <div className='my-4 space-y-2 mx-4'>
-                <Input placeholder='Link' />
-                <Input placeholder='Category' />
-                <Input placeholder='Image Url' />
-                <Input placeholder='Video Url' />
-                <Input placeholder='Country' />
-                <Input placeholder='Language' />
+                <Input type='text' placeholder='Link' />
+                <Input type='text' placeholder='Category' />
+                <Input type='text' placeholder='Image Url' />
+                <Input type='text' placeholder='Video Url' />
+                <Input type='text' placeholder='Country' />
+                <Input type='text' placeholder='Language' />
               </div>
               <div className='flex justify-between items-center mx-4'>
                 <span className='text-xs uppercase text-bold text-sky-500'>Priority</span>
