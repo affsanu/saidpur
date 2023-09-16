@@ -1,6 +1,7 @@
 "use client";
+
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 import { ModeToggle } from '../ModeToggle';
 import MainLogo from '../MainLogo';
 import { ProfileMenu } from './ProfileMenu';
@@ -12,26 +13,9 @@ type Props = {}
 
 const DNav = (props: Props) => {
     const pathname = usePathname();
-    const [isFixed, setIsFixed] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            if (scrollY > 0) {
-                setIsFixed(true);
-            } else {
-                setIsFixed(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+    
     return (
-        <div className={`${isFixed ? 'fixed top-0 bg-white dark:bg-black z-50 inset-0' : ''} w-full h-16 border-b shadow-sm`}>
+        <div className="w-full h-16  border-b shadow-sm">
             <div className='grid max-w-6xl mx-auto h-full px-4 items-center'>
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center uppercase gap-6 text-sm dark:text-slate-300'>

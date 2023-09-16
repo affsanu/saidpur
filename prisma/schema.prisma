@@ -29,7 +29,8 @@ model Posts {
   description     String
   link            String?
   keywords        String
-  creator         String?
+  commentator     String?
+  comments        String?
   video_url       String?
   image_url       String?
   source_id       String?

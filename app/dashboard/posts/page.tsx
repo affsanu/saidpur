@@ -2,16 +2,17 @@
 import { Card } from '@/components/ui/card';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-type Props = {}
-
-const PostsPage = (props: Props) => {
+type PriorityVariant = "1" | "2" | "3" | "4" | "5" | "0";
+const PostsPage = () => {
   const session = useSession();
   const router = useRouter();
+
+  const [priority, setPriority] = useState<PriorityVariant>("0");
 
   useEffect(() => {
     if (session?.status === "unauthenticated") {
@@ -28,13 +29,21 @@ const PostsPage = (props: Props) => {
           </div>
         </div>
         <div className='grid grid-cols-7 gap-4'>
+          {/*First Column*/}
           <div className='col-span-5 space-y-4'>
             <Input type='text' placeholder='Enter Headline' />
             <Input type='text' placeholder='Enter Content' />
-            <Textarea placeholder="Type your article here." />
+            <Textarea placeholder="Paragraph One." />
+            <Textarea placeholder="Type comments if any." />
+            <Input type='text' placeholder='Commentator name' />
+            <Textarea placeholder="Paragraph Two." />
+            <Textarea placeholder="Paragraph Three." />
+            <Textarea placeholder="Paragraph Four." />
           </div>
+
+          {/*Second Column*/}
           <div className='col-span-2 w-full h-full'>
-            <Card className='flex items-center justify-center'>
+            <Card className='flex flex-col h-full'>
               <div className='w-full'>
                 <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -46,6 +55,32 @@ const PostsPage = (props: Props) => {
                   </div>
                   <input type="file" className="hidden" />
                 </label>
+              </div>
+              <div className='my-4 space-y-2 mx-4'>
+                <Input placeholder='Link' />
+                <Input placeholder='Category' />
+                <Input placeholder='Image Url' />
+                <Input placeholder='Video Url' />
+                <Input placeholder='Country' />
+                <Input placeholder='Language' />
+              </div>
+              <div className='flex justify-between items-center mx-4'>
+                <span className='text-xs uppercase text-bold text-sky-500'>Priority</span>
+                <span onClick={() => setPriority("1")} className={`${priority === "1" && "bg-rose-600 text-slate-200"} border p-1 px-3 rounded-full flex justify-center items-center cursor-pointer hover:bg-rose-500 hover:text-white`}>
+                  1
+                </span>
+                <span onClick={() => setPriority("2")} className={`${priority === "2" && "bg-rose-600 text-slate-200"} border p-1 px-3 rounded-full flex justify-center items-center cursor-pointer hover:bg-rose-500 hover:text-white`}>
+                  2
+                </span>
+                <span onClick={() => setPriority("3")} className={`${priority === "3" && "bg-rose-600 text-slate-200"} border p-1 px-3 rounded-full flex justify-center items-center cursor-pointer hover:bg-rose-500 hover:text-white`}>
+                  3
+                </span>
+                <span onClick={() => setPriority("4")} className={`${priority === "4" && "bg-rose-600 text-slate-200"} border p-1 px-3 rounded-full flex justify-center items-center cursor-pointer hover:bg-rose-500 hover:text-white`}>
+                  4
+                </span>
+                <span onClick={() => setPriority("5")} className={`${priority === "5" && "bg-rose-600 text-slate-200"} border p-1 px-3 rounded-full flex justify-center items-center cursor-pointer hover:bg-rose-500 hover:text-white`}>
+                  5
+                </span>
               </div>
             </Card>
           </div>
