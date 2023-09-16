@@ -6,13 +6,24 @@ import { Instagram, Twitter, Facebook, ArrowLeftSquare, ArrowRightSquare, Clock,
 import { Separator } from '@/components/ui/separator';
 import { LoginDialog } from './login-dialog';
 import { useSession, signOut } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { CustomApi } from '@/types/types';
 
 
-type Props = {}
-
-const TopNav = (props: Props) => {
+const TopNav = () => {
     const session = useSession();
     const date = TopNavDate();
+    const [posts, setPosts] = useState<CustomApi[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        setIsLoading(true)
+        axios.get(`/api/dashboard/posts`)
+            .then((response) => setPosts(response.data))
+            .catch((error) => console.log(error.response.data))
+            .finally(() => setIsLoading(false));
+    }, [])
 
     const handleSignOutClick = async () => {
         await signOut();
@@ -29,7 +40,7 @@ const TopNav = (props: Props) => {
                     <span className='cursor-pointer dark:text-sky-400'>
                         <Typewriter
                             options={{
-                                strings: ['ডেঙ্গুতে এক দিনে আরও ২০ জনের মৃত্যু', 'ঢাকায় রুশ পররাষ্ট্রমন্ত্রী সের্গেই লাভরভ'],
+                                strings: posts.map(post => post.title),
                                 autoStart: true,
                                 loop: true,
                                 cursor: " ",
