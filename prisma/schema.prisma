@@ -26,7 +26,10 @@ model Posts {
   article_id      String
   title           String
   content         String
-  description     String
+  description1    String
+  description2    String?
+  description3    String?
+  description4    String?
   link            String?
   keywords        String
   commentator     String?
