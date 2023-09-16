@@ -12,7 +12,33 @@ datasource db {
 
 model User {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
   email    String  @unique
   isAdmin  Boolean @default(false)
   password String
+
+  posts Posts[]
+}
+
+model Posts {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String   @db.ObjectId
+  article_id      String
+  title           String
+  content         String
+  description     String
+  link            String?
+  keywords        String
+  creator         String?
+  video_url       String?
+  image_url       String?
+  source_id       String?
+  source_priority Int
+  country         String
+  category        String
+  language        String
+  published       Boolean  @default(false)
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pubDate         DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
