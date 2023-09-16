@@ -10,6 +10,18 @@ import { useSession } from 'next-auth/react';
 
 type Props = {}
 
+const categories = [
+    { label: "বাংলাদেশ", value: "/pages/bangladesh" },
+    { label: "বিশ্ব", value: "/pages/world" },
+    { label: "খেলা", value: "/pages/sports" },
+    { label: "প্রযুক্তি", value: "/pages/tech" },
+    { label: "অর্থনীতি", value: "/pages/economy" },
+    { label: "বিনোদন", value: "/pages/entertainment" },
+    { label: "শিক্ষা", value: "/pages/education" },
+    { label: "মতামত", value: "/pages/opinion" },
+    { label: "চাকরি", value: "/pages/jobs" },
+] as const
+
 const MainNav = (props: Props) => {
     const pathname = usePathname();
     const session = useSession();
@@ -42,41 +54,14 @@ const MainNav = (props: Props) => {
                             className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
                             মূল পাতা
                         </Link>
-                        <Link
-                            href="/pages/world"
-                            className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/pages/world" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
-                            বিশ্ব
-                        </Link>
-                        <Link
-                            href="/pages/sports"
-                            className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/pages/sports" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
-                            খেলা
-                        </Link>
-                        <Link
-                            href="/pages/tech"
-                            className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/pages/tech" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
-                            প্রযুক্তি
-                        </Link>
-                        <Link
-                            href="/pages/economy"
-                            className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/pages/economy" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
-                            অর্থনীতি
-                        </Link>
-                        <Link
-                            href="/pages/entertainment"
-                            className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/pages/entertainment" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
-                            বিনোদন
-                        </Link>
-                        <Link
-                            href="/pages/education"
-                            className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/pages/education" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
-                            শিক্ষা
-                        </Link>
-                        <Link
-                            href="/pages/opinion"
-                            className={`${buttonVariants({ variant: "ghost" })} ${pathname === "/pages/opinion" ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
-                            মতামত
-                        </Link>
+                        {categories.map((category, index) => (
+                            <Link
+                                key={index}
+                                href={`${category.value}`}
+                                className={`${buttonVariants({ variant: "ghost" })} ${pathname === `${category.value}` ? "bg-rose-600 text-white hover:bg-rose-700" : ""}`}>
+                                {category.label}
+                            </Link>
+                        ))}
                     </div>
                     <div className='flex items-center gap-4'>
                         {session.data?.user && <Link href="/dashboard">

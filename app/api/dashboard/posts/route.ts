@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
 import getSession from "@/actions/getSession";
+import { ArticleIdGen } from "@/actions/articleIdGen";
 
 export async function POST(request: Request) {
     try {
@@ -25,10 +26,10 @@ export async function POST(request: Request) {
         const {
             title,
             content,
-            paragraph1,
-            paragraph2,
-            paragraph3,
-            paragraph4,
+            description1,
+            description2,
+            description3,
+            description4,
             comments,
             commentator,
             link,
@@ -39,25 +40,26 @@ export async function POST(request: Request) {
             language,
             source_priority,
             source_id,
+            keywords,
         } = body;
 
         const post = await prisma.posts.create({
             data: {
                 userId: user.id,
-                article_id: "sdfsdfsd",
+                article_id: ArticleIdGen(10),
                 title,
                 content,
-                description1: paragraph1,
-                description2: paragraph2,
-                description3: paragraph3,
-                description4: paragraph4,
+                description1,
+                description2,
+                description3,
+                description4,
                 comments,
                 commentator,
                 link,
                 category,
                 image_url,
                 video_url,
-                keywords: "ABC",
+                keywords,
                 country,
                 language,
                 source_priority,
@@ -68,6 +70,19 @@ export async function POST(request: Request) {
         return NextResponse.json(post);
     } catch (error: any) {
         console.log(error, "POSTS_ERROR");
+        return new NextResponse("Internal Error", { status: 500 });
+    }
+}
+
+export async function GET(request: Request) {
+    try {
+        const posts = await prisma.posts.findMany({
+            orderBy: { pubDate: 'desc' },
+        });
+
+        return NextResponse.json(posts);
+    } catch (error: any) {
+        console.log(error, "LAST_POST_GET_ERROR");
         return new NextResponse("Internal Error", { status: 500 });
     }
 }

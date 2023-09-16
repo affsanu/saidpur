@@ -9,10 +9,11 @@ import SlidingSection from "@/components/sections/SlidingSection";
 type Props = {}
 
 const MainHome = (props: Props) => {
+    
     return (
         <div className="bg-slate-100 dark:bg-slate-900 py-6 space-y-6">
             <div className="px-3 md:px-6 lg:px-4 space-y-6">
-                <MainSection />
+                <MainSection params=""/>
                 <SecondSection />
             </div>
             <PhotoSection />
