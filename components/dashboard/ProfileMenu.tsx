@@ -20,7 +20,12 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { signOut, useSession } from "next-auth/react"
 
-export function ProfileMenu() {
+interface ProfileMenuProps {
+    userName: string;
+    isAdmin: boolean;
+}
+
+export function ProfileMenu({ userName, isAdmin }: ProfileMenuProps) {
     const { data: session, status } = useSession();
 
     const handleLogout = async () => {
@@ -31,12 +36,12 @@ export function ProfileMenu() {
             <DropdownMenuTrigger asChild>
                 <Avatar className="cursor-pointer">
                     <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                    <AvatarFallback>Admin</AvatarFallback>
+                    <AvatarFallback>{userName}</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
                 <DropdownMenuLabel className="flex flex-col dark:text-slate-200">
-                    Super Admin
+                    {userName}
                     <span className="text-xs text-muted-foreground">{session?.user?.email}</span>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />

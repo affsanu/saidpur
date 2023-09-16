@@ -9,11 +9,14 @@ import { DSheets } from './DSheets';
 import { usePathname } from 'next/navigation';
 import { PathnameSplite } from '@/actions/PathnameSplite';
 
-type Props = {}
+interface DNavProps {
+    userName: string;
+    isAdmin: boolean;
+}
 
-const DNav = (props: Props) => {
+const DNav = ({ userName, isAdmin }: DNavProps) => {
     const pathname = usePathname();
-    
+
     return (
         <div className="w-full h-16  border-b shadow-sm">
             <div className='grid max-w-6xl mx-auto h-full px-4 items-center'>
@@ -26,7 +29,7 @@ const DNav = (props: Props) => {
                     <div className='flex items-center gap-4'>
                         <ModeToggle />
                         <div className='flex items-center gap-2 uppercase text-xs text-cyan-400'>
-                            <ProfileMenu />
+                            <ProfileMenu userName={userName!} isAdmin={isAdmin!} />
                         </div>
                     </div>
                 </div>
