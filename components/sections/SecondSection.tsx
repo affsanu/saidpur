@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from 'react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card'
 import { CustomApi } from '@/types/types'
@@ -19,6 +20,7 @@ const SecondSection = (props: Props) => {
             .catch((error) => console.log(error.response.data))
             .finally(() => setIsLoading(false));
     }, [])
+
 
     return (
         <div className="max-w-6xl mx-auto">
