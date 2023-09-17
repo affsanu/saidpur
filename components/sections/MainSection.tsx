@@ -64,7 +64,7 @@ const MainSection = ({ params }: MainSectionProps) => {
                                 </div>
                                 {isLoading ?
                                     <Skeleton className="h-16 w-full" /> :
-                                    <Link href={`/pages/${post.category}/${post.article_id}`} className={`${calculateStringLength(post.title) > 28 ? "md:text-2xl" : "md:text-3xl lg:text-4xl"} font-semibold dark:text-slate-200 cursor-pointer group-hover:text-rose-500 duration-300`}>
+                                    <Link href={`/pages/${post.category}/${post.article_id}`} className={`${post.title.length > 25 ? "md:text-2xl" : "md:text-3xl lg:text-4xl"} font-semibold dark:text-slate-200 cursor-pointer group-hover:text-rose-500 duration-300`}>
                                         {post.title}
                                     </Link>
                                 }
