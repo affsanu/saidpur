@@ -26,8 +26,8 @@ const SecondSection = (props: Props) => {
         <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {posts.map((item) => (
-                    <Link href={`/pages/${item.category}/${item.article_id}`} >
-                        <Card key={item.article_id} className='cursor-pointer hover:scale-105 duration-300 group'>
+                    <Link key={item.article_id} href={`/pages/${item.category}/${item.article_id}`} >
+                        <Card className='cursor-pointer hover:scale-105 duration-300 group'>
                             <CardHeader>
                                 <CardTitle className='text-sm dark:text-slate-200 group-hover:text-rose-600'>
                                     {item.title}
